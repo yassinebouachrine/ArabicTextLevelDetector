@@ -1,0 +1,185 @@
+Project Overview
+The goal of this project is to detect the proficiency level of Arabic sentences (e.g., A, A+, B, B+, C, C+) using deep learning. The project is built using Java and leverages the Spring Boot framework for the backend and Deeplearning4j for implementing the deep learning model. The front-end is rendered using Thymeleaf templates.
+
+How the Project Works
+1. Input
+The user inputs an Arabic sentence through a web interface (HTML form).
+
+The input is sent to the backend for processing.
+
+2. Feature Extraction
+The backend processes the input text and extracts features such as:
+
+Word Count: Total number of words in the sentence.
+
+Unique Word Count: Number of unique words in the sentence.
+
+Average Word Length: Average length of words in the sentence.
+
+3. Deep Learning Model
+The extracted features are fed into a deep learning model built using Deeplearning4j.
+
+The model predicts the proficiency level of the sentence based on the features.
+
+4. Output
+The predicted proficiency level (e.g., A, A+, B, etc.) is displayed to the user on the result page.
+
+Technologies and Libraries Used
+1. Spring Boot
+Purpose: Backend framework for building the web application.
+
+Features:
+
+Handles HTTP requests and responses.
+
+Manages dependency injection and application configuration.
+
+Provides a REST API for communication between the front-end and back-end.
+
+2. Deeplearning4j
+Purpose: Deep learning library for Java.
+
+Features:
+
+Used to build, train, and deploy the deep learning model.
+
+Supports multi-layer neural networks.
+
+Integrates with ND4J for numerical computations.
+
+3. Thymeleaf
+Purpose: Templating engine for rendering HTML pages.
+
+Features:
+
+Dynamically binds data from the backend to the front-end.
+
+Used to create the index.html, result.html, and error.html templates.
+
+4. Apache POI
+Purpose: Library for reading and writing Excel files.
+
+Features:
+
+Used to load the training dataset (arabic_text_level.xlsx) for the deep learning model.
+
+5. H2 Database (Optional)
+Purpose: In-memory database for storing data during development.
+
+Features:
+
+Used for quick prototyping and testing.
+
+Can be replaced with a production-grade database like MySQL or PostgreSQL.
+
+Project Architecture
+1. Front-End
+Templates:
+
+index.html: Form for inputting Arabic text.
+
+result.html: Displays the classification result.
+
+error.html: Displays an error message if something goes wrong.
+
+Technologies:
+
+HTML, CSS, Bootstrap, and Thymeleaf.
+
+2. Back-End
+Controller:
+
+TextController.java: Handles HTTP requests and routes them to the appropriate service.
+
+Services:
+
+TextClassifierService.java: Orchestrates the classification process.
+
+DeepLearningService.java: Manages the deep learning model.
+
+DataService.java: Handles data loading and preprocessing.
+
+Models:
+
+TextFeatures.java: Represents the features extracted from the input text.
+
+TextInput.java: Represents the user input.
+
+TextLevel.java: Enum for proficiency levels (A, A+, B, etc.).
+
+Utilities:
+
+TextProcessor.java: Extracts features from the input text.
+
+3. Deep Learning Model
+Model Architecture:
+
+Input Layer: 3 features (word count, unique word count, average word length).
+
+Hidden Layer: 64 neurons with ReLU activation.
+
+Output Layer: 6 neurons (one for each proficiency level) with Softmax activation.
+
+Training:
+
+The model is trained on the dataset (arabic_text_level.xlsx).
+
+Features are normalized before training.
+
+Workflow
+User Interaction:
+
+The user navigates to the home page (index.html) and inputs an Arabic sentence.
+
+The form submits the input to the backend via a POST request.
+
+Backend Processing:
+
+The TextController receives the input and passes it to the TextClassifierService.
+
+The TextClassifierService extracts features using the TextProcessor and passes them to the DeepLearningService.
+
+The DeepLearningService uses the trained model to predict the proficiency level.
+
+Result Display:
+
+The predicted proficiency level is sent back to the front-end and displayed on the result.html page.
+
+Error Handling:
+
+If an error occurs (e.g., invalid input), the user is redirected to the error.html page.
+
+Dataset
+The dataset (arabic_text_level.xlsx) contains Arabic sentences labeled with their proficiency levels.
+
+Each sentence is associated with features like word count, unique word count, and average word length.
+
+The dataset is used to train the deep learning model.
+
+How to Improve the Project
+Enhance Feature Extraction:
+
+Add more features like sentence complexity, grammar rules, or vocabulary richness.
+
+Use a Larger Dataset:
+
+Collect more labeled data to improve the model's accuracy.
+
+Advanced Deep Learning Models:
+
+Experiment with more complex architectures like LSTM or Transformer models.
+
+Front-End Enhancements:
+
+Add a more interactive and user-friendly interface.
+
+Deployment:
+
+Deploy the application to a cloud platform like AWS, Google Cloud, or Heroku.
+
+Why This Project is Useful
+Language Learning: Helps learners assess their proficiency level in Arabic.
+
+Automated Grading: Can be used by educators to automatically grade Arabic sentences.
+
+Scalable: The model can be extended to other languages or more granular proficiency levels.
