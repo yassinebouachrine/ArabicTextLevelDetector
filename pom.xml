@@ -4,23 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-<<<<<<< HEAD
-    <groupId>org.example</groupId>
-    <artifactId>TextLevelDetection</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-=======
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.9</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <groupId>com.arabictextcomplexity</groupId>
@@ -36,14 +24,12 @@
     </properties>
 
     <dependencies>
-        <!-- Dépendances existantes -->
         <dependency>
             <groupId>nz.ac.waikato.cms.weka</groupId>
             <artifactId>weka-stable</artifactId>
             <version>${weka.version}</version>
         </dependency>
 
-        <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -69,14 +55,12 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Pour le traitement du texte arabe -->
         <dependency>
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-analyzers-common</artifactId>
             <version>8.11.2</version>
         </dependency>
 
-        <!-- Pour les courbes de performance -->
         <dependency>
             <groupId>org.jfree</groupId>
             <artifactId>jfreechart</artifactId>
@@ -90,7 +74,6 @@
         </dependency>
     </dependencies>
 
-    <!-- Dans pom.xml pour SLF4J + Logback -->
     <build>
         <plugins>
             <plugin>
@@ -117,5 +100,4 @@
             </resource>
         </resources>
     </build>
->>>>>>> 4d8ceef (commit init)
 </project>
