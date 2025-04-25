@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتائج التحليل - محلل تعقيد النصوص العربية</title>
+    <link rel="stylesheet" th:href="@{/static/style.css}">
+    <script th:src="@{/static/app.js}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.css">
+    <style>
+        body {
+            font-family: 'Amiri', serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin-top: 50px;
+        }
+        .text-preview {
+            max-height: 150px;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .complexity-badge {
+            font-size: 24px;
+            padding: 10px 20px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .feature-value {
+            font-weight: bold;
+            color: #28a745;
+        }
+        .chart-container {
+            height: 300px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">محلل تعقيد النصوص العربية</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">الرئيسية</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">حول التطبيق</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="header">
+        <h1>نتائج تحليل النص</h1>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header bg-light">
+            <h5>النص المحلل</h5>
+        </div>
+        <div class="card-body">
+            <div class="text-preview" th:text="${analysisResult.arabicText}"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-light">
+                    <h5>مستوى التعقيد</h5>
+                </div>
+                <div th:switch="${analysisResult.predictedLevel}" class="text-center">
+  <span th:case="'A+'"
+        class="badge rounded-pill complexity-badge bg-success"
+        th:text="${analysisResult.predictedLevel}"></span>
+                    <span th:case="'A'"
+                          class="badge rounded-pill complexity-badge bg-success"
+                          th:text="${analysisResult.predictedLevel}"></span>
+
+                    <span th:case="'B+'"
+                          class="badge rounded-pill complexity-badge bg-warning"
+                          th:text="${analysisResult.predictedLevel}"></span>
+                    <span th:case="'B'"
+                          class="badge rounded-pill complexity-badge bg-warning"
+                          th:text="${analysisResult.predictedLevel}"></span>
+
+                    <span th:case="'C+'"
+                          class="badge rounded-pill complexity-badge bg-danger"
+                          th:text="${analysisResult.predictedLevel}"></span>
+                    <span th:case="'C'"
+                          class="badge rounded-pill complexity-badge bg-danger"
+                          th:text="${analysisResult.predictedLevel}"></span>
+
+                </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-light">
+                    <h5>المؤشرات اللغوية</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            متوسط طول الجمل:
+                            <span class="feature-value"
+                                  th:text="${#numbers.formatDecimal(analysisResult.details.avgSentenceLength, 1, 2)} + ' كلمة'"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            متوسط طول الكلمات:
+                            <span class="feature-value"
+                                  th:text="${#numbers.formatDecimal(analysisResult.details.avgWordLength, 1, 2)} + ' حرف'"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            تنوع المفردات:
+                            <span class="feature-value"
+                                  th:text="${#numbers.formatDecimal(analysisResult.details.typeTokenRatio * 100, 1, 2)} + '%'"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            نسبة الكلمات الطويلة:
+                            <span class="feature-value"
+                                  th:text="${#numbers.formatDecimal(analysisResult.details.longWordRatio * 100, 1, 2)} + '%'"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            نسبة تجمعات الحروف الصعبة:
+                            <span class="feature-value"
+                                  th:text="${#numbers.formatDecimal(analysisResult.details.consonantClusterRatio * 100, 1, 2)} + '%'"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header bg-light">
+            <h5>درجة الثقة في التصنيف</h5>
+        </div>
+        <div class="card-body">
+            <div class="chart-container">
+                <canvas id="confidenceChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <a href="/" class="btn btn-primary">تحليل نص جديد</a>
+    </div>
+</div>
+
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <p class="mb-0">© 2025 - محلل تعقيد النصوص العربية</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+<script th:inline="javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        const confidenceData = /*[[${analysisResult.confidenceScores}]]*/ {};
+        const labels = Object.keys(confidenceData);
+        const values = Object.values(confidenceData);
+
+        const ctx = document.getElementById('confidenceChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'درجة الثقة (%)',
+                    data: values,
+                    backgroundColor: [
+                        'rgba(40, 167, 69, 0.7)',
+                        'rgba(40, 167, 69, 0.5)',
+                        'rgba(255, 193, 7, 0.7)',
+                        'rgba(255, 193, 7, 0.5)',
+                        'rgba(220, 53, 69, 0.7)',
+                        'rgba(220, 53, 69, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(40, 167, 69, 1)',
+                        'rgba(40, 167, 69, 1)',
+                        'rgba(255, 193, 7, 1)',
+                        'rgba(255, 193, 7, 1)',
+                        'rgba(220, 53, 69, 1)',
+                        'rgba(220, 53, 69, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

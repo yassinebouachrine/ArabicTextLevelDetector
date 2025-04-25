@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حول التطبيق - محلل تعقيد النصوص العربية</title>
+    <link rel="stylesheet" th:href="@{/static/style.css}">
+    <script th:src="@{/static/app.js}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Amiri', serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin-top: 50px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .section-title {
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">محلل تعقيد النصوص العربية</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">الرئيسية</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/about">حول التطبيق</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="header">
+        <h1>حول التطبيق</h1>
+        <p class="lead">أداة لتحليل مستوى تعقيد النصوص العربية باستخدام تقنيات الذكاء الاصطناعي</p>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h3 class="section-title">ما هو محلل تعقيد النصوص العربية؟</h3>
+            <p>
+                هذا التطبيق عبارة عن أداة مبتكرة تهدف إلى تحليل وتقييم مستوى تعقيد النصوص العربية بشكل آلي باستخدام تقنيات معالجة اللغة الطبيعية والتعلم الآلي. يساعد المعلمين والطلاب ومطوري المحتوى على تقييم مستوى صعوبة النصوص العربية لأغراض تعليمية وتطويرية.
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h3 class="section-title">كيف يعمل التطبيق؟</h3>
+
+            <h5>1. نموذج التنبؤ</h5>
+            <ul>
+                <li>جمع واستخدام مجموعة بيانات من النصوص العربية بمستويات تعقيد مختلفة</li>
+                <li>استخراج الخصائص اللغوية المهمة (طول الجمل، تنوع المفردات، التراكيب النحوية، إلخ)</li>
+                <li>تدريب نموذج تعلم آلي</li>
+            </ul>
+
+            <h5>2. التطبيق الويب</h5>
+            <ul>
+                <li>واجهة تسمح للمستخدمين بإدخال النصوص العربية للتحليل</li>
+                <li>دمج النموذج المدرب لتوليد التنبؤات</li>
+                <li>عرض نتائج تحليل مستوى التعقيد بطريقة مرئية وسهلة الفهم</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h3 class="section-title">مستويات التعقيد</h3>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-success text-white text-center">
+                            المستوى A+/A
+                        </div>
+                        <div class="card-body">
+                            <p>نصوص بسيطة مناسبة للمبتدئين، تحتوي على مفردات أساسية وجمل قصيرة وتراكيب نحوية بسيطة.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-warning text-dark text-center">
+                            المستوى B+/B
+                        </div>
+                        <div class="card-body">
+                            <p>نصوص متوسطة المستوى تحتوي على مفردات متنوعة وجمل أطول وبعض التراكيب النحوية المتقدمة.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div class="card-header bg-danger text-white text-center">
+                            المستوى C+/C
+                        </div>
+                        <div class="card-body">
+                            <p>نصوص متقدمة تحتوي على مفردات معقدة وجمل طويلة وتراكيب نحوية متقدمة تتطلب مستوى عالٍ من الكفاءة اللغوية.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h3 class="section-title">المؤشرات المستخدمة في التحليل</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">متوسط طول الجمل: مؤشر على تعقيد الجمل وطولها</li>
+                <li class="list-group-item">متوسط طول الكلمات: يشير إلى صعوبة المفردات المستخدمة</li>
+                <li class="list-group-item">تنوع المفردات: نسبة الكلمات الفريدة إلى إجمالي عدد الكلمات</li>
+                <li class="list-group-item">نسبة الكلمات الطويلة: نسبة الكلمات التي تتجاوز عددًا معينًا من الحروف</li>
+                <li class="list-group-item">نسبة تجمعات الحروف الصعبة: مقياس لتجمعات الحروف الساكنة التي قد تجعل النطق أكثر صعوبة</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-primary btn-lg">جرب التحليل الآن</a>
+    </div>
+</div>
+
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <p class="mb-0">© 2025 - محلل تعقيد النصوص العربية</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
