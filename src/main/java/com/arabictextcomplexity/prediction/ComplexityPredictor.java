@@ -19,7 +19,6 @@ public class ComplexityPredictor {
 
 
     public ComplexityPredictor(String modelPath, String[] classValues) throws Exception {
-        // Charger le modèle
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(modelPath))) {
             this.model = (Classifier) ois.readObject();
         }
