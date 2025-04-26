@@ -62,7 +62,7 @@ public class ComplexityController {
     @ExceptionHandler(Exception.class)
     public String handleError(Exception e, Model model) {
         model.addAttribute("errorMessage", e.getMessage());
-        e.printStackTrace(); // Pour le debug
+        e.printStackTrace();
         return "error";
     }
 }
