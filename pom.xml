@@ -96,6 +96,7 @@
                     <include>**/*.csv</include>
                     <include>**/*.arff</include>
                     <include>**/*.model</include>
+                    <include>**/*.html</include>
                 </includes>
             </resource>
         </resources>
