@@ -107,7 +107,6 @@ public class DatasetLoader {
         attributes.add(new Attribute("longWordRatio"));
         attributes.add(new Attribute("consonantClusterRatio"));
 
-        // Créer l'attribut de classe (niveau de complexité)
         ArrayList<String> classValues = new ArrayList<>();
         for (TextInstance instance : textInstances) {
             if (!classValues.contains(instance.getComplexityLevel())) {
