@@ -40,8 +40,8 @@ public class ArabicTextPreprocessor {
         Map<Character, Character> m = new HashMap<>();
         char ALEF = '\u0627';
         for (char c : new char[]{'\u0622','\u0623','\u0625','\u0671'}) m.put(c, ALEF);
-        m.put('\u0629','\u0647'); // Teh marbuta to heh
-        m.put('\u0626','\u064A'); // Yeh variants
+        m.put('\u0629','\u0647'); 
+        m.put('\u0626','\u064A');
         return m;
     }
 
