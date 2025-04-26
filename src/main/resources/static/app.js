@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Elements
     const analyzeForm = document.querySelector('form[action="/analyze"]');
     const textArea = document.getElementById('arabicText');
     const exampleButtons = document.querySelectorAll('[onclick^="insertExample"]');
@@ -54,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function addAnimations() {
-        // Add fade-in class to main elements
         document.querySelectorAll('.header, .card').forEach(function(element, index) {
             element.classList.add('fade-in');
             element.style.animationDelay = (index * 0.1) + 's';
@@ -82,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
 
-        // Check if the text is actually Arabic
         if (!containsArabic(textArea.value)) {
             showError('يرجى إدخال نص باللغة العربية');
             return false;
@@ -97,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showError(message) {
-        // Remove any existing error message
         const existingError = document.querySelector('.alert-danger');
         if (existingError) {
             existingError.remove();
