@@ -37,13 +37,6 @@ Ouvrez votre navigateur web et accédez à l'adresse suivante :
 http://localhost:8080
 ```
 
-## Informations techniques
-
-- **Image Docker** : bouachrineyassine/arabic-text-complexity:latest
-- **Architecture** : linux/amd64
-- **Taille de l'image** : 284.06 MB (compressée)
-- **Dernière mise à jour** : 4 jours
-
 
 ## Groupe 
 - Les membres du groupe sont :
